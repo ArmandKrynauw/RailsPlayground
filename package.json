@@ -8,6 +8,11 @@
   "dependencies": {
     "autoprefixer": "latest",
     "postcss": "latest",
-    "tailwindcss": "latest"
+    "tailwindcss": "latest",
+    "@hotwired/stimulus": "latest",
+    "@hotwired/turbo-rails": "latest"
+  },
+  "devDependencies": {
+    "esbuild": "0.19.11"
   }
 }

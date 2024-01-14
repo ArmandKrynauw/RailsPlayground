@@ -82,5 +82,5 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 
-  config.hosts << "auction-lyrics-ratio-cove.trycloudflare.com"
+  config.hosts << "finland-enhance-newport-watched.trycloudflare.com"
 end

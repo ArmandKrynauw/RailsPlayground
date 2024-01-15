@@ -1,107 +1,78 @@
-<section class="bg-gray-50 dark:bg-gray-900">
-  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
-    <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+<section class="bg-base-300">
+  <div class="form-control items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
+    <div class="bg-base-100 w-full rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
         <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
           <%= image_tag "BiteBunchLogo.png", class: "w-10 h-10" %>
-          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">BiteBunch</span>
+          <span class="text-base-content self-center text-2xl font-semibold whitespace-nowrap">BiteBunch</span>
         </a>
 
-        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+        <h1 class="text-base-content text-xl font-bold leading-tight tracking-tight md:text-2xl">
           Create your account
         </h1>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-4 md:space-y-6" }) do |form| %>
-
-          <div>
-            <%= render "shared/form_input_field" %>
-          </div>
-
           <div class="flex items-center space-x-3">
             <div>
-              <% if !resource.errors[:first_name].any? %>
-                <%= form.label :first_name, "First name", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-                <%= form.text_field :first_name, autofocus: true, class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
-              <% else %>
-                <%= form.label :first_name, "First name", class: "block mb-2 text-sm font-medium text-red-700 dark:text-red-500" %>
-                <%= form.text_field :first_name, autofocus: true, class: "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400" %>
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500">
-                  <% resource.errors.full_messages_for(:first_name).each do |message| %>
-                    <span><%= message %></span>
-                  <% end %>
-                </p>
-              <% end %>
+              <%= form.label :first_name, "First name", class: "label label-text" %>
+              <%= form.text_field :first_name, class: "input input-bordered w-full #{'input-error' if has_errors?(resource, :first_name) }" %>
+              <% if has_errors?(resource, :first_name) %>
+                <span class="label label-text-alt text-error">
+                  <%= resource.errors.full_messages_for(:first_name).to_sentence %>
+                </span>
+              <% end  %>
             </div>
 
             <div>
-              <% if !resource.errors[:last_name].any? %>
-                <%= form.label :last_name, "Last name", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-                <%= form.text_field :last_name, class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
-              <% else %>
-                <%= form.label :last_name, "Last name", class: "block mb-2 text-sm font-medium text-red-700 dark:text-red-500" %>
-                <%= form.text_field :last_name, class: "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400" %>
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500">
-                  <% resource.errors.full_messages_for(:last_name).each do |message| %>
-                    <span><%= message %></span>
-                  <% end %>
-                </p>
-              <% end %>
+              <%= form.label :last_name, "Last name", class: "label label-text" %>
+              <%= form.text_field :last_name, class: "input input-bordered w-full #{'input-error' if has_errors?(resource, :last_name) }" %>
+              <% if has_errors?(resource, :last_name) %>
+                <span class="label label-text-alt text-error">
+                  <%= resource.errors.full_messages_for(:last_name).to_sentence %>
+                </span>
+              <% end  %>
             </div>
           </div>
 
           <div>
-            <% if !resource.errors[:email].any? %>
-              <%= form.label :email, "Email", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-              <%= form.email_field :email, autocomplete: "email", class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
-            <% else %>
-              <%= form.label :email, "Email", class: "block mb-2 text-sm font-medium text-red-700 dark:text-red-500" %>
-              <%= form.email_field :email, autocomplete: "email", class: "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400" %>
-              <p class="mt-2 text-sm text-red-600 dark:text-red-500">
-                <% resource.errors.full_messages_for(:email).each do |message| %>
-                  <span><%= message %></span>
-                <% end %>
-              </p>
-            <% end %>
+            <%= form.label :email, "Email", class: "label label-text" %>
+            <%= form.email_field :email, class: "input input-bordered w-full #{'input-error' if has_errors?(resource, :email) }" %>
+            <% if has_errors?(resource, :email) %>
+              <span class="label label-text-alt text-error">
+                <%= resource.errors.full_messages_for(:email).to_sentence %>
+              </span>
+            <% end  %>
           </div>
 
           <div>
-            <% if !resource.errors[:password].any? %>
-              <%= form.label :password, "Password", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-              <%= form.password_field :password, autocomplete: "new-password", class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
-            <% else %>
-              <%= form.label :password, "Password", class: "block mb-2 text-sm font-medium text-red-700 dark:text-red-500" %>
-              <%= form.password_field :password, autocomplete: "new-password",  class: "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400" %>
-              <p class="mt-2 text-sm text-red-600 dark:text-red-500">
-                <% resource.errors.full_messages_for(:password).each do |message| %>
-                  <span><%= message %></span>
-                <% end %>
-              </p>
-            <% end %>
+            <%= form.label :password, "Password", class: "label label-text" %>
+            <%= form.password_field :password, class: "input input-bordered w-full #{'input-error' if has_errors?(resource, :password) }" %>
+            <% if has_errors?(resource, :password) %>
+              <span class="label label-text-alt text-error">
+                <%= resource.errors.full_messages_for(:password).to_sentence %>
+              </span>
+            <% end  %>
           </div>
 
           <div>
-            <% if !resource.errors[:password_confirmation].any? %>
-              <%= form.label :password_confirmation, "Password", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-              <%= form.password_field :password_confirmation, autocomplete: "new-password", class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
-            <% else %>
-              <%= form.label :password_confirmation, "Confirm Password", class: "block mb-2 text-sm font-medium text-red-700 dark:text-red-500" %>
-              <%= form.password_field :password_confirmation, autocomplete: "new-password", class: "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400" %>
-              <p class="mt-2 text-sm text-red-600 dark:text-red-500">
-                <% resource.errors.full_messages_for(:password_confirmation).each do |message| %>
-                  <span><%= message %></span>
-                <% end %>
-              </p>
-            <% end %>
+            <%= form.label :password_confirmation, "Confirm Password", class: "label label-text" %>
+            <%= form.password_field :password_confirmation, class: "input input-bordered w-full #{'input-error' if has_errors?(resource, :password_confirmation) }" %>
+            <% if has_errors?(resource, :password_confirmation) %>
+              <span class="label label-text-alt text-error">
+                <%= resource.errors.full_messages_for(:password_confirmation).to_sentence %>
+              </span>
+            <% end  %>
           </div>
 
           <div class="actions">
-            <%= form.submit "Sign up", class: "w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" %>
+            <%= form.submit "Sign up", class: "btn btn-primary w-full" %>
           </div>
 
-          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-            Have an account?
-            <%= link_to "Sign in", session_path(resource_name), class: "font-medium text-primary-600 hover:underline dark:text-primary-500" %>
-          </p>
+          <div>
+            <span class="text-neutral-content">Have and account?</span>
+            <%= link_to "Sign in", session_path(resource_name), class: "link text-secondary" %>
+          </div>
+
         <% end %>
       </div>
     </div>

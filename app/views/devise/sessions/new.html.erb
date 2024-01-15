@@ -1,56 +1,46 @@
-<section class="bg-gray-50 dark:bg-gray-900">
-  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
-    <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+<section class="bg-base-300">
+  <div class="form-control items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
+    <div class="bg-base-100 w-full rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
         <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
           <%= image_tag "BiteBunchLogo.png", class: "w-10 h-10" %>
-          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">BiteBunch</span>
+          <span class="text-base-content self-center text-2xl font-semibold whitespace-nowrap">BiteBunch</span>
         </a>
 
-        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+        <h1 class="text-base-content text-xl font-bold leading-tight tracking-tight md:text-2xl">
           Sign in
         </h1>
 
-        <% if flash[:alert] %>
-          <div class="flex text-sm font-medium text-red-700 dark:text-red-500 items-center space-x-1">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" class="cl-internal-pisc6q w-5 h-5">
-              <path fill="currentColor" fill-rule="evenodd" d="M13.4 7A6.4 6.4 0 1 1 .6 7a6.4 6.4 0 0 1 12.8 0Zm-5.6 3.2a.8.8 0 1 1-1.6 0 .8.8 0 0 1 1.6 0ZM7 3a.8.8 0 0 0-.8.8V7a.8.8 0 0 0 1.6 0V3.8A.8.8 0 0 0 7 3Z" clip-rule="evenodd"></path>
-            </svg>
-            <span><%= flash[:alert] %></span>
-          </div>
-        <% end %>
-
         <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-4 md:space-y-6" }) do |form| %>
           <div>
-            <%= form.label :email, "Email", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-            <%= form.email_field :email, autofocus: true, autocomplete: "email", class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            <%= form.label :email, "Email", class: "label label-text" %>
+            <%= form.email_field :email, class: "input input-bordered w-full #{'input-error' if has_errors?(resource, :email) }" %>
+            <% if has_errors?(resource, :email) %>
+              <span class="label label-text-alt text-error">
+                <%= resource.errors.full_messages_for(:email).to_sentence %>
+              </span>
+            <% end  %>
           </div>
 
           <div>
-            <%= form.label :password, "Password", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-            <%= form.password_field :password, autocomplete: "current-password", class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            <%= form.label :password, "Password", class: "label label-text" %>
+            <%= form.password_field :password, class: "input input-bordered w-full #{'input-error' if has_errors?(resource, :password) }" %>
+            <% if has_errors?(resource, :password) %>
+              <span class="label label-text-alt text-error">
+                <%= resource.errors.full_messages_for(:password).to_sentence %>
+              </span>
+            <% end  %>
           </div>
-
-          <% if devise_mapping.rememberable? %>
-            <div class="flex items-center justify-between">
-              <label class="relative inline-flex items-center cursor-pointer">
-                <%= form.check_box :remember_me, checked: true, class: "sr-only peer" %>
-                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                <%= form.label :remember_me, "Remember me", class: "ms-3 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              </label>
-
-              <%= link_to "Forgot password?", new_password_path(resource_name), class: "text-sm font-medium text-primary-600 hover:underline dark:text-primary-500" %>
-            </div>
-          <% end %>
 
           <div class="actions">
-            <%= form.submit "Sign in", class: "w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" %>
+            <%= form.submit "Sign in", class: "btn btn-primary w-full" %>
           </div>
 
-          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-            No account?
-            <%= link_to "Sign up", new_registration_path(resource_name), class: "font-medium text-primary-600 hover:underline dark:text-primary-500" %>
-          </p>
+          <div>
+            <span class="text-neutral-content">No account?</span>
+            <%= link_to "Sign up", new_registration_path(resource_name), class: "link text-secondary" %>
+          </div>
+
         <% end %>
       </div>
     </div>

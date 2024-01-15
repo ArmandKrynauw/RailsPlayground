@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Some elements of the playground:
 
-Things you may want to cover:
+- User authentication workflow with Devise
+- Service worker and manifest for PWA
+- Esbuild for JS
+- Some basic UI form components from Flowbite
 
-* Ruby version
 
-* System dependencies
+# Development
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Make sure you have a postgres DB running locally.
+- Install all gems with `bundler install`
+- Install npm packages with `yarn i`
+- Start dev server with `bin/dev`

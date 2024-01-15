@@ -82,5 +82,5 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 
-  config.hosts << "finland-enhance-newport-watched.trycloudflare.com"
+  config.hosts << "limits-champion-ross-graphs.trycloudflare.com"
 end

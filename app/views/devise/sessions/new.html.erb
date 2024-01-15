@@ -11,26 +11,26 @@
           Sign in
         </h1>
 
+
         <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-4 md:space-y-6" }) do |form| %>
           <div>
             <%= form.label :email, "Email", class: "label label-text" %>
-            <%= form.email_field :email, class: "input input-bordered w-full #{'input-error' if has_errors?(resource, :email) }" %>
-            <% if has_errors?(resource, :email) %>
-              <span class="label label-text-alt text-error">
-                <%= resource.errors.full_messages_for(:email).to_sentence %>
-              </span>
-            <% end  %>
+            <%= form.email_field :email, class: "input input-bordered w-full" %>
           </div>
 
           <div>
             <%= form.label :password, "Password", class: "label label-text" %>
-            <%= form.password_field :password, class: "input input-bordered w-full #{'input-error' if has_errors?(resource, :password) }" %>
-            <% if has_errors?(resource, :password) %>
-              <span class="label label-text-alt text-error">
-                <%= resource.errors.full_messages_for(:password).to_sentence %>
-              </span>
-            <% end  %>
+            <%= form.password_field :password, class: "input input-bordered w-full" %>
           </div>
+
+          <% if flash[:alert] %>
+            <div class="flex text-sm font-medium text-error items-center space-x-1">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" class="cl-internal-pisc6q w-5 h-5">
+                <path fill="currentColor" fill-rule="evenodd" d="M13.4 7A6.4 6.4 0 1 1 .6 7a6.4 6.4 0 0 1 12.8 0Zm-5.6 3.2a.8.8 0 1 1-1.6 0 .8.8 0 0 1 1.6 0ZM7 3a.8.8 0 0 0-.8.8V7a.8.8 0 0 0 1.6 0V3.8A.8.8 0 0 0 7 3Z" clip-rule="evenodd"></path>
+              </svg>
+              <span><%= flash[:alert] %></span>
+            </div>
+          <% end %>
 
           <div class="actions">
             <%= form.submit "Sign in", class: "btn btn-primary w-full" %>
